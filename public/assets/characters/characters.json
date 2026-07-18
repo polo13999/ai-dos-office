@@ -1,0 +1,1134 @@
+{
+  "frameSize": [
+    32,
+    32
+  ],
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "characters": [
+    {
+      "id": "founder",
+      "name": "Polo",
+      "role": "Founder",
+      "sheet": "/assets/characters/founder.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "cto",
+      "name": "Nova",
+      "role": "CTO",
+      "sheet": "/assets/characters/cto.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "pm",
+      "name": "Ming",
+      "role": "Product Manager",
+      "sheet": "/assets/characters/pm.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "architect",
+      "name": "Ari",
+      "role": "System Architect",
+      "sheet": "/assets/characters/architect.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "backend",
+      "name": "Bo",
+      "role": "Backend Engineer",
+      "sheet": "/assets/characters/backend.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "frontend",
+      "name": "Kai",
+      "role": "Frontend Engineer",
+      "sheet": "/assets/characters/frontend.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "ai_engineer",
+      "name": "Eve",
+      "role": "AI Engineer",
+      "sheet": "/assets/characters/ai_engineer.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "designer",
+      "name": "Mina",
+      "role": "UI/UX Designer",
+      "sheet": "/assets/characters/designer.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "qa",
+      "name": "Rin",
+      "role": "QA Engineer",
+      "sheet": "/assets/characters/qa.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "devops",
+      "name": "Max",
+      "role": "DevOps Engineer",
+      "sheet": "/assets/characters/devops.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "secretary",
+      "name": "Sera",
+      "role": "Secretary",
+      "sheet": "/assets/characters/secretary.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "hr",
+      "name": "Luna",
+      "role": "HR",
+      "sheet": "/assets/characters/hr.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "finance",
+      "name": "Ken",
+      "role": "Finance",
+      "sheet": "/assets/characters/finance.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    },
+    {
+      "id": "marketing",
+      "name": "May",
+      "role": "Marketing",
+      "sheet": "/assets/characters/marketing.png",
+      "animations": {
+        "walk_down": {
+          "row": 0,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_left": {
+          "row": 1,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_right": {
+          "row": 2,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "walk_up": {
+          "row": 3,
+          "frames": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "fps": 7
+        },
+        "sit_down": {
+          "row": 0,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_left": {
+          "row": 1,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_right": {
+          "row": 2,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        },
+        "sit_up": {
+          "row": 3,
+          "frames": [
+            4,
+            5
+          ],
+          "fps": 2
+        }
+      }
+    }
+  ]
+}
