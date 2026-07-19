@@ -1,28 +1,40 @@
-# AI-DOS Pixel Office v0.6
+# AI-DOS Office v0.9.3
 
-本版以 v0.5 為基礎迭代：
+Pixel Command Center prototype, iterated directly from v0.8.1.
 
-- 改用 1536px 高解析度完整 Office Floor，移除低解析度 405px 放大底圖。
-- 背景採原圖比例 1536:1133 顯示，避免拉伸與文字模糊。
-- 從使用者提供的 Character Asset Foundation 圖重新切出 14 組透明 Sprite Sheet。
-- 每組 Sprite 為 192×128：4 方向，每方向 4 格行走 + 2 格坐姿。
-- 角色比例重新調整，並重新校準工作區與會議室座標。
-- 心情泡泡提升圖層與高度，避免被姓名牌或角色遮住。
-- 召集會議時角色會集中至會議室，結束後返回原位。
+## Added in v0.9.1
 
-## 執行
+- Project Center with project health, progress, blocker count and detail panel
+- War Room with severity overview, blocker center and CTO situation report
+- Mission Board with Backlog / Doing / Blocked / Review / Done columns
+- AI suggestions and recent activity timeline
+- Improved pixel-styled navigation and responsive layout
+
+## Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-瀏覽 `http://localhost:3000`。
-
-## 驗證
+## Verify
 
 ```bash
-npx tsc --noEmit
+npm run build
 ```
 
-已通過 TypeScript 檢查。Next.js 開發伺服器已成功啟動並回傳 HTTP 200。
+
+## v0.9.1
+- AI Team 員工總覽與詳細狀態
+- Company Analytics 與 Project Health
+- Company Cash / Revenue / AI Cost Mock Dashboard
+- Notification Center
+- Responsive 與 Pixel UI 細節優化
+
+
+## v0.9.3 Final Art Pass
+- 依概念戰情室圖新增四組狀態圖示與四組快速操作圖示
+- 新增指揮官 Quick Actions 操作列
+- 強化面板邊框、像素光影、任務焦點與 HUD 細節
+- 統一版本標示、狀態文字與最終美術動效
+- 保留 v0.9.2 全部功能與資料結構

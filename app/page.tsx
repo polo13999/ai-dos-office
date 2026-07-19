@@ -1,2 +1,5 @@
-import PixelOffice from "../components/PixelOffice";
-export default function Home() { return <PixelOffice />; }
+import CommandCenter from "../components/CommandCenter";
+
+export default function Page(){
+  return <CommandCenter />;
+}

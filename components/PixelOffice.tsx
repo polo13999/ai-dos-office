@@ -6,18 +6,18 @@ type Agent={id:string;name:string;role:string;avatar:string;sprite:string;x:numb
 type Feed={time:string;name:string;text:string;avatar:string};
 
 const agents:Agent[]=[
-{id:"cto",name:"小智",role:"CTO",avatar:"/assets/cto-portrait.png",sprite:"/assets/characters-v06/cto.png",x:15,y:21,status:"工作中",task:"Plugin Runtime 架構設計",mood:85,energy:72,efficiency:90},
-{id:"backend",name:"阿強",role:"後端工程師",avatar:"/assets/backend-portrait.png",sprite:"/assets/characters-v06/backend.png",x:35,y:21,status:"工作中",task:"API 整合測試",mood:78,energy:66,efficiency:86},
-{id:"frontend",name:"凱文",role:"前端工程師",avatar:"/assets/frontend-portrait.png",sprite:"/assets/characters-v06/frontend.png",x:43,y:29,status:"工作中",task:"儀表板 UI 優化",mood:82,energy:79,efficiency:88},
-{id:"ai",name:"艾德",role:"AI 工程師",avatar:"/assets/ai-portrait.png",sprite:"/assets/characters-v06/ai_engineer.png",x:55,y:21,status:"工作中",task:"AI Assistant 功能開發",mood:88,energy:74,efficiency:91},
-{id:"designer",name:"小美",role:"設計師",avatar:"/assets/designer-portrait.png",sprite:"/assets/characters-v06/designer.png",x:18,y:48,status:"討論中",task:"新功能 UI Flow",mood:89,energy:70,efficiency:87},
-{id:"pm",name:"小明",role:"PM",avatar:"/assets/pm-portrait.png",sprite:"/assets/characters-v06/pm.png",x:31,y:53,status:"移動中",task:"整理 Sprint 任務",mood:81,energy:68,efficiency:84},
-{id:"secretary",name:"艾米",role:"AI 助理",avatar:"/assets/secretary-portrait.png",sprite:"/assets/characters-v06/secretary.png",x:58,y:52,status:"待命中",task:"整理會議紀錄",mood:92,energy:80,efficiency:89},
-{id:"qa",name:"小花",role:"QA",avatar:"/assets/qa-portrait.png",sprite:"/assets/characters-v06/qa.png",x:70,y:55,status:"測試中",task:"回報新 Bug",mood:76,energy:64,efficiency:85},
-{id:"ops",name:"大衛",role:"運維工程師",avatar:"/assets/ops-portrait.png",sprite:"/assets/characters-v06/devops.png",x:21,y:74,status:"工作中",task:"監控 API 與資源",mood:80,energy:77,efficiency:88},
-{id:"marketing",name:"凱莉",role:"行銷",avatar:"/assets/marketing-portrait.png",sprite:"/assets/characters-v06/marketing.png",x:12,y:77,status:"工作中",task:"產品發表素材",mood:90,energy:73,efficiency:83},
-{id:"hr",name:"麗莎",role:"HR",avatar:"/assets/hr-portrait.png",sprite:"/assets/characters-v06/hr.png",x:31,y:78,status:"工作中",task:"人員配置規劃",mood:87,energy:69,efficiency:81},
-{id:"admin",name:"露西",role:"秘書",avatar:"/assets/admin-portrait.png",sprite:"/assets/characters-v06/secretary.png",x:61,y:72,status:"接待中",task:"安排今日行程",mood:91,energy:82,efficiency:86},
+{id:"cto",name:"小智",role:"CTO",avatar:"/assets/cto-portrait.png",sprite:"/assets/characters/cto.png",x:15,y:21,status:"工作中",task:"Plugin Runtime 架構設計",mood:85,energy:72,efficiency:90},
+{id:"backend",name:"阿強",role:"後端工程師",avatar:"/assets/backend-portrait.png",sprite:"/assets/characters/backend.png",x:35,y:21,status:"工作中",task:"API 整合測試",mood:78,energy:66,efficiency:86},
+{id:"frontend",name:"凱文",role:"前端工程師",avatar:"/assets/frontend-portrait.png",sprite:"/assets/characters/frontend.png",x:43,y:29,status:"工作中",task:"儀表板 UI 優化",mood:82,energy:79,efficiency:88},
+{id:"ai",name:"艾德",role:"AI 工程師",avatar:"/assets/ai-portrait.png",sprite:"/assets/characters/ai_engineer.png",x:55,y:21,status:"工作中",task:"AI Assistant 功能開發",mood:88,energy:74,efficiency:91},
+{id:"designer",name:"小美",role:"設計師",avatar:"/assets/designer-portrait.png",sprite:"/assets/characters/designer.png",x:18,y:48,status:"討論中",task:"新功能 UI Flow",mood:89,energy:70,efficiency:87},
+{id:"pm",name:"小明",role:"PM",avatar:"/assets/pm-portrait.png",sprite:"/assets/characters/pm.png",x:31,y:53,status:"移動中",task:"整理 Sprint 任務",mood:81,energy:68,efficiency:84},
+{id:"secretary",name:"艾米",role:"AI 助理",avatar:"/assets/secretary-portrait.png",sprite:"/assets/characters/secretary.png",x:58,y:52,status:"待命中",task:"整理會議紀錄",mood:92,energy:80,efficiency:89},
+{id:"qa",name:"小花",role:"QA",avatar:"/assets/qa-portrait.png",sprite:"/assets/characters/qa.png",x:70,y:55,status:"測試中",task:"回報新 Bug",mood:76,energy:64,efficiency:85},
+{id:"ops",name:"大衛",role:"運維工程師",avatar:"/assets/ops-portrait.png",sprite:"/assets/characters/devops.png",x:21,y:74,status:"工作中",task:"監控 API 與資源",mood:80,energy:77,efficiency:88},
+{id:"marketing",name:"凱莉",role:"行銷",avatar:"/assets/marketing-portrait.png",sprite:"/assets/characters/marketing.png",x:12,y:77,status:"工作中",task:"產品發表素材",mood:90,energy:73,efficiency:83},
+{id:"hr",name:"麗莎",role:"HR",avatar:"/assets/hr-portrait.png",sprite:"/assets/characters/hr.png",x:31,y:78,status:"工作中",task:"人員配置規劃",mood:87,energy:69,efficiency:81},
+{id:"admin",name:"露西",role:"秘書",avatar:"/assets/admin-portrait.png",sprite:"/assets/characters/secretary.png",x:61,y:72,status:"接待中",task:"安排今日行程",mood:91,energy:82,efficiency:86},
 ];
 
 const taskRows=[
