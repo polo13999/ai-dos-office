@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate-dependency-hardening:
@@ -19,10 +19,8 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - name: Checkout isolated branch
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: work/work-office-dependency-hardening-0001-gpt56
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -30,17 +28,23 @@ jobs:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Regenerate portable lockfile
+      - name: Verify portable reproducible lockfile
         shell: bash
         run: |
-          rm -f package-lock.json
-          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org
           if grep -q 'packages.applied-caas-gateway1.internal.api.openai.org' package-lock.json; then
-            echo 'Internal registry URL remains in lockfile.' >&2
+            echo 'Internal registry URL remains in committed lockfile.' >&2
             exit 1
           fi
+          cp package-lock.json package-lock.committed.json
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org
+          if ! cmp -s package-lock.committed.json package-lock.json; then
+            echo 'Committed package-lock.json is not reproducible from public npm.' >&2
+            diff -u package-lock.committed.json package-lock.json || true
+            exit 1
+          fi
+          rm package-lock.committed.json
 
-      - name: Install from regenerated lockfile
+      - name: Install from committed lockfile
         run: npm ci --no-audit --no-fund --registry=https://registry.npmjs.org
 
       - name: Compile focused queue validation
@@ -51,16 +55,3 @@ jobs:
 
       - name: Build Office application
         run: npm run build
-
-      - name: Persist portable lockfile when changed
-        shell: bash
-        run: |
-          if git diff --quiet -- package-lock.json; then
-            echo 'Portable lockfile already matches generated output.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package-lock.json
-          git commit -m 'Regenerate portable public npm lockfile'
-          git push origin HEAD:work/work-office-dependency-hardening-0001-gpt56
