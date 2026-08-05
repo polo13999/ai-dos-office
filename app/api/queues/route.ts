@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { FixtureQueueSource } from "@/lib/queues/fixture-source";
-import { buildQueueDashboard, hasAvailableQueue } from "@/lib/queues/service";
+import { FixtureQueueSource } from "../../../lib/queues/fixture-source";
+import { buildQueueDashboard, hasAvailableQueue } from "../../../lib/queues/service";
 
 export const dynamic = "force-dynamic";
 
