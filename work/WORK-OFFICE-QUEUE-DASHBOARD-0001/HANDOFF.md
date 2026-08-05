@@ -7,69 +7,74 @@ STATUS:
 RUNNING
 
 CURRENT ROUND OR STEP:
-IMPLEMENTATION_PLAN_COMPLETE
+PARSER_SLICE_COMPLETE
 
 PREVIOUS ROUND OR STEP:
-ORIENTATION_COMPLETE
+IMPLEMENTATION_PLAN_COMPLETE
 
 AUTHORITY:
-- Review and modify only `polo13999/ai-dos-office` within the bounded Work `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/` and the explicitly authorized parser/fixture paths listed below.
-- May implement credential-free queue contracts, deterministic Work and Research Markdown-table parsers, and sanitized fixtures.
-- May inspect queue schemas and repository policy needed for that bounded implementation.
+- Review and modify only `polo13999/ai-dos-office` within the bounded Work `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/` and the explicitly authorized validation paths listed below.
+- May inspect and validate the persisted credential-free queue contracts, parsers, and sanitized fixtures.
+- May add the minimum repository-approved executable validation files and configuration needed to compile and run parser cases.
 - May not expose private-repository credentials to the browser, create a real source adapter, add an API route, modify the Office UI, mutate authoritative queues, claim or reorder items, alter Handoff authority, merge, promote files, activate a Mission, or expand scope.
 - This Handoff is transport only.
 
 CURRENT STATE:
-The Work is claimed and both `ORIENTATION.md` and `IMPLEMENTATION-PLAN.md` are persisted. The plan verifies that Work and Research use different authoritative schemas and defines a shared read-only display envelope without inventing missing fields. It proposes a server-only source boundary, source-specific parsers, independent snapshots, visible freshness/error states, a later `/api/queues` endpoint, and a dedicated Queue Dashboard view. No product code, API, UI, credential, real source adapter, or test dependency has been added.
+The credential-free parser slice is persisted. `lib/queues/types.ts`, the deterministic shared Markdown-table parser, Work parser, Research parser, five sanitized fixtures, and `PARSER-EVIDENCE.md` exist. Work and Research schema differences are preserved without invented values. Static repository evidence covers valid parsing, empty and malformed tables, invalid Queue Order, missing IDs, unknown status/priority warnings, and em-dash normalization. No executable test, TypeScript compilation, API, UI, source adapter, credential, or private-repository access has occurred.
 
 COMPLETED:
-- Re-read and verified the current Canonical Handoff.
-- Inspected the authoritative Work Queue and Research Queue schemas.
-- Recorded Work-specific `Queue Order`, `Next Action`, `Resume Condition`, and `Work Path` fields.
-- Recorded Research-specific `Current Round` and `Waiting` fields and the absence of Queue Order.
-- Preserved source terminology and defined null behavior without inferring values.
-- Searched for an existing Office API route convention; none was established by the available repository search.
-- Defined the source adapter interface, normalized models, parsing rules, internal API contract, freshness/error behavior, proposed dedicated Queue Dashboard view, validation approach, file-level boundary, and credential-free implementation sequence.
-- Created and read back `IMPLEMENTATION-PLAN.md`.
-- Avoided product-code changes and credential configuration.
+- Created queue domain, item, parse-result, and Markdown-row contracts.
+- Created an exact-header deterministic Markdown-table parser with separator validation, escaped-pipe handling, source-row traceability, and warning/error behavior.
+- Created separate Work and Research normalizers.
+- Enforced positive integer Work Queue Order without inferring replacements.
+- Preserved unknown priority and status strings with warnings.
+- Preserved Research `Current Round` and left Work-only fields null.
+- Added sanitized valid Work and Research fixtures.
+- Added fixtures for malformed Work rows, empty Work table, and malformed Research separator.
+- Created `PARSER-EVIDENCE.md` mapping all required cases to repository evidence.
+- Explicitly recorded that no runtime test, compiler, build, dependency, API, UI, or credential work occurred.
 
 LAST RESULT:
-The credential-free implementation plan is repository-persisted at commit `b12fd94d02a4521addfff24628acb7af39007f5f`. The next bounded action isolates schema correctness before any source access, API, or UI integration.
+The parser evidence is repository-persisted at commit `a96ba48797dd096a932bafc29efe16aa82056685`. The parser slice is complete as static repository evidence, but executable correctness remains unverified.
 
 EXACTLY ONE NEXT ACTION:
-Implement the credential-free queue contracts and deterministic parser slice by creating `lib/queues/types.ts`, `lib/queues/parse-markdown-table.ts`, `lib/queues/parse-work-queue.ts`, `lib/queues/parse-research-queue.ts`, and sanitized Work/Research fixture files under `fixtures/queues/`; persist repository-contained parser evidence demonstrating valid Work parsing, valid Research parsing, schema-difference preservation, empty-table handling, malformed-table handling, malformed Work Queue Order handling, missing required ID handling, unknown-status warning behavior, and em-dash-to-null normalization.
+Create and run the minimum executable parser validation for the persisted fixtures, including TypeScript compilation and assertions for valid Work parsing, valid Research parsing, schema-difference preservation, empty-table handling, malformed-table handling, malformed Work Queue Order, missing required ID, unknown-status warning behavior, and em-dash-to-null normalization; persist the exact validation mechanism, commands, results, and any required bounded fixes in `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/PARSER-VALIDATION.md`.
 
 AUTHORIZED SCOPE:
-- Create only the parser, type, sanitized fixture, and bounded evidence files required by this action.
-- Use current authoritative schemas as the source for field names and behavior.
-- Preserve unknown status and priority strings with warnings rather than reinterpretation.
-- Record the validation mechanism actually used; do not claim tests ran when they did not.
+- Inspect repository TypeScript configuration and package policy.
+- Add only the minimum validation files and configuration necessary to compile and execute the parser cases.
+- Modify parser files only when executable validation reveals a bounded defect.
+- Record exact commands and results; do not claim success without execution evidence.
 
 AUTHORIZED PRODUCT PATHS:
-- `lib/queues/types.ts`
-- `lib/queues/parse-markdown-table.ts`
-- `lib/queues/parse-work-queue.ts`
-- `lib/queues/parse-research-queue.ts`
+- `lib/queues/`
 - `fixtures/queues/`
+- validation files under `tests/queues/` or `scripts/` as minimally required
+- `package.json` and lockfile only if an executable validation mechanism genuinely requires an explicitly recorded minimal change
 - `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/`
 
 PROHIBITED:
 - No `app/api` route.
 - No `CommandCenter` or other UI modification.
 - No GitHub App, PAT, private key, token, environment secret, filesystem repository path, or real source adapter.
-- No new dependency or package-script change without explicit successor authority.
 - No queue mutation, claim action, priority interpretation, reordering, approval, or Handoff mutation through Office.
 - No merge, promotion, Mission change, or scope expansion.
 
 EVIDENCE:
-- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/README.md`
-- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/ORIENTATION.md`
-- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/IMPLEMENTATION-PLAN.md`
+- `lib/queues/types.ts`
+- `lib/queues/parse-markdown-table.ts`
+- `lib/queues/parse-work-queue.ts`
+- `lib/queues/parse-research-queue.ts`
+- `fixtures/queues/work-valid.md`
+- `fixtures/queues/research-valid.md`
+- `fixtures/queues/work-edge-cases.md`
+- `fixtures/queues/empty-work.md`
+- `fixtures/queues/malformed-research.md`
+- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/PARSER-EVIDENCE.md`
+- parser-evidence commit `a96ba48797dd096a932bafc29efe16aa82056685`
 - implementation-plan commit `b12fd94d02a4521addfff24628acb7af39007f5f`
-- `polo13999/ai-dos-work:WORK_TASK_LIST.md`
-- `polo13999/ai-dos-research:RESEARCH_TASK_LIST.md`
 
 STOP CONDITION:
-Stop after the authorized parser/contracts/fixtures and parser evidence are persisted and read-back verified; then emit exactly one successor Handoff with one bounded next action.
+Stop after executable parser validation and `PARSER-VALIDATION.md` are persisted and read-back verified; then emit exactly one successor Handoff with one bounded next action.
 
 <!-- AI-DOS HANDOFF END -->
