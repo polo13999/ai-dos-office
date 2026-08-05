@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate-dependency-hardening:
@@ -19,8 +19,10 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - name: Checkout
+      - name: Checkout isolated branch
         uses: actions/checkout@v4
+        with:
+          ref: work/work-office-dependency-hardening-0001-gpt56
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -50,11 +52,15 @@ jobs:
       - name: Build Office application
         run: npm run build
 
-      - name: Upload portable lockfile
-        uses: actions/upload-artifact@v4
-        with:
-          name: portable-package-lock
-          path: package-lock.json
-          if-no-files-found: error
-
-# synchronized validation trigger
+      - name: Persist portable lockfile when changed
+        shell: bash
+        run: |
+          if git diff --quiet -- package-lock.json; then
+            echo 'Portable lockfile already matches generated output.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package-lock.json
+          git commit -m 'Regenerate portable public npm lockfile'
+          git push origin HEAD:work/work-office-dependency-hardening-0001-gpt56
