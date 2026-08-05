@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 import PixelOffice from "./PixelOffice";
+import QueueDashboard from "./QueueDashboard";
 
-type View = "home" | "projects" | "war" | "missions" | "team" | "analytics" | "messages" | "office";
+type View = "home" | "projects" | "war" | "missions" | "queues" | "team" | "analytics" | "messages" | "office";
 type Priority = "Critical" | "High" | "Medium" | "Low";
 
 const navArt: Record<View | "settings", string> = {
-  home: "/assets/v092/home.png", projects: "/assets/v092/projects.png", war: "/assets/v092/war.png", missions: "/assets/v092/missions.png", team: "/assets/v092/team.png", analytics: "/assets/v092/analytics.png", messages: "/assets/v092/messages.png", office: "/assets/v092/office.png", settings: "/assets/v092/settings.png"
+  home: "/assets/v092/home.png", projects: "/assets/v092/projects.png", war: "/assets/v092/war.png", missions: "/assets/v092/missions.png", queues: "/assets/v092/missions.png", team: "/assets/v092/team.png", analytics: "/assets/v092/analytics.png", messages: "/assets/v092/messages.png", office: "/assets/v092/office.png", settings: "/assets/v092/settings.png"
 };
 
 const projects = [
@@ -57,6 +58,7 @@ const navItems: { id: View; icon: string; label: string; badge?: string; danger?
   { id: "projects", icon: "📂", label: "專案", badge: "4" },
   { id: "war", icon: "🚨", label: "戰情室", badge: "2", danger: true },
   { id: "missions", icon: "📋", label: "任務", badge: "9" },
+  { id: "queues", icon: "🗂️", label: "工作佇列" },
   { id: "team", icon: "👥", label: "AI 團隊", badge: "12" },
   { id: "analytics", icon: "📈", label: "分析" },
   { id: "messages", icon: "💬", label: "訊息", badge: "3" },
@@ -85,6 +87,7 @@ export default function CommandCenter() {
     projects: ["Project Center", "查看所有產品、Plugin 與基礎設施的健康狀態。"],
     war: ["War Room 戰情室", "把卡住、緊急與需要決策的事情集中在同一個地方。"],
     missions: ["Mission Board", "追蹤任務從待辦、執行、阻塞、審查到完成。"],
+    queues: ["Work / Research Queue", "唯讀查看權威 Work 與 Research 清單、狀態、等待原因與來源新鮮度。"],
     team: ["AI Team", "查看每位 AI 員工的專長、任務與目前狀態。"],
     analytics: ["Company Analytics", "用最少的圖表掌握公司成長、效率與成本。"],
     messages: ["Notification Center", "集中查看需要注意、決策與追蹤的公司訊息。"],
@@ -123,6 +126,7 @@ export default function CommandCenter() {
         {view === "projects" && <ProjectsView />}
         {view === "war" && <WarRoomView />}
         {view === "missions" && <MissionView />}
+        {view === "queues" && <QueueDashboard />}
         {view === "team" && <TeamView />}
         {view === "analytics" && <AnalyticsView />}
         {view === "messages" && <MessagesView />}
