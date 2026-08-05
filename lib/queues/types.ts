@@ -1,6 +1,7 @@
 export type QueueDomain = "WORK" | "RESEARCH";
 
 export type QueueParseStatus = "OK" | "EMPTY" | "PARSE_ERROR";
+export type QueueSnapshotStatus = QueueParseStatus | "SOURCE_ERROR";
 
 export type QueueItem = {
   domain: QueueDomain;
@@ -24,6 +25,34 @@ export type QueueParseResult = {
   warnings: string[];
   errors: string[];
   items: QueueItem[];
+};
+
+export type QueueSourceDocument = {
+  domain: QueueDomain;
+  repository: string;
+  path: string;
+  revision: string | null;
+  fetchedAt: string;
+  content: string;
+};
+
+export type QueueSnapshot = {
+  domain: QueueDomain;
+  repository: string;
+  path: string;
+  revision: string | null;
+  fetchedAt: string;
+  lastSuccessfulFetch: string | null;
+  status: QueueSnapshotStatus;
+  warnings: string[];
+  errors: string[];
+  items: QueueItem[];
+};
+
+export type QueueDashboardResponse = {
+  generatedAt: string;
+  work: QueueSnapshot;
+  research: QueueSnapshot;
 };
 
 export type MarkdownTableRow = {
