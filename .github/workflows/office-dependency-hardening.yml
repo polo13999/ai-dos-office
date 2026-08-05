@@ -1,0 +1,57 @@
+name: Office Dependency Hardening Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-dependency-hardening:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Verify portable reproducible lockfile
+        shell: bash
+        run: |
+          if grep -q 'packages.applied-caas-gateway1.internal.api.openai.org' package-lock.json; then
+            echo 'Internal registry URL remains in committed lockfile.' >&2
+            exit 1
+          fi
+          cp package-lock.json package-lock.committed.json
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund --registry=https://registry.npmjs.org
+          if ! cmp -s package-lock.committed.json package-lock.json; then
+            echo 'Committed package-lock.json is not reproducible from public npm.' >&2
+            diff -u package-lock.committed.json package-lock.json || true
+            exit 1
+          fi
+          rm package-lock.committed.json
+
+      - name: Install from committed lockfile
+        run: npm ci --no-audit --no-fund --registry=https://registry.npmjs.org
+
+      - name: Compile focused queue validation
+        run: npx tsc -p tsconfig.queue-service-validation.json
+
+      - name: Run focused service and API validation
+        run: node .queue-service-validation/tests/queues/service-api-validation.js
+
+      - name: Build Office application
+        run: npm run build
