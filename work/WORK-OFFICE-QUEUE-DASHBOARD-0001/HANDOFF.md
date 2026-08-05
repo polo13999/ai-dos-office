@@ -7,75 +7,74 @@ STATUS:
 RUNNING
 
 CURRENT ROUND OR STEP:
-PARSER_VALIDATION_COMPLETE
+FIXTURE_SERVICE_API_COMPLETE
 
 PREVIOUS ROUND OR STEP:
-PARSER_SLICE_COMPLETE
+PARSER_VALIDATION_COMPLETE
 
 AUTHORITY:
-- Review and modify only `polo13999/ai-dos-office` within the bounded Work `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/` and the explicitly authorized credential-free service/API paths listed below.
-- May implement a fixture-backed `QueueSource`, queue service, browser-safe response contracts, and an internal read-only `/api/queues` endpoint using only sanitized fixtures.
-- May validate independent Work and Research snapshot behavior, source/parse errors, and credential-safe serialization.
-- May not configure or access real private-repository credentials, implement a real GitHub or filesystem source adapter, modify the Office UI, mutate authoritative queues, claim or reorder items, alter Handoff authority, merge, promote files, activate a Mission, or expand scope.
+- Review and modify only `polo13999/ai-dos-office` within the bounded Work `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/` and the explicitly authorized read-only UI paths listed below.
+- May implement a credential-free Queue Dashboard UI that consumes the existing fixture-backed `/api/queues` endpoint.
+- May add loading, empty, source-error, parse-error, warning, freshness, Work, Research, and optional combined display states.
+- May not configure or access real private-repository credentials, implement a real GitHub or filesystem source adapter, mutate authoritative queues, claim or reorder items, alter Handoff authority, merge, promote files, activate a Mission, or expand scope.
 - This Handoff is transport only.
 
 CURRENT STATE:
-The credential-free parser slice and executable validation are persisted. The shared Markdown-table parser, Work parser, Research parser, five sanitized fixtures, `tests/queues/parser-validation.ts`, `tsconfig.queue-validation.json`, `PARSER-EVIDENCE.md`, and `PARSER-VALIDATION.md` exist. TypeScript parser compilation succeeded and 26 assertions passed for valid Work and Research parsing, schema-difference preservation, empty and malformed tables, invalid Queue Order, missing ID, unknown status/priority warnings, and em-dash normalization. No API, UI, real source adapter, credential, dependency, package-script, queue mutation, or private-repository access has occurred.
+The credential-free parser, fixture source, queue service, browser-safe response contracts, and internal read-only `/api/queues` endpoint are persisted. The endpoint uses only sanitized fixtures and returns separate Work and Research snapshots with source metadata and visible `OK`, `EMPTY`, `SOURCE_ERROR`, or `PARSE_ERROR` states. Executable service/API validation passed 21 assertions covering independent-domain behavior, no fabricated rows, parse and source failures, empty queues, HTTP status, `no-store`, and browser-safe serialization. No Office UI, real source adapter, private credential, queue mutation, dependency change, merge, promotion, or Mission change has occurred.
 
 COMPLETED:
-- Read back the repository TypeScript configuration, package metadata, parsers, and fixtures.
-- Confirmed Node `v22.16.0` and TypeScript `5.8.3` for the isolated executable validation.
-- Persisted `tests/queues/parser-validation.ts` with 26 assertions.
-- Persisted `tsconfig.queue-validation.json` as a minimal reproducible validation configuration.
-- Compiled the parser TypeScript successfully.
-- Executed the compiled parser against all five fixtures.
-- Verified valid Work and Research results, schema differences, empty-table behavior, malformed separator behavior, invalid Queue Order and missing ID row rejection, unknown value warnings, and em-dash-to-null normalization.
-- Recorded the initial isolated-environment Node-type limitation without misclassifying it as a parser defect.
-- Created and read back `PARSER-VALIDATION.md`.
-- Made no parser fix because executable validation revealed no parser defect.
+- Extended queue contracts with source documents, snapshots, response, and `SOURCE_ERROR` status.
+- Added `QueueSource` and bounded source error contracts.
+- Added `FixtureQueueSource` reading only sanitized fixture files.
+- Added queue service behavior that reads Work and Research independently.
+- Added visible source and parse failure states without fabricating rows.
+- Added `app/api/queues/route.ts` with fixture-backed read-only output and `Cache-Control: no-store`.
+- Added executable service/API validation and a reproducible TypeScript validation configuration.
+- Executed validation with Node `v22.16.0` and TypeScript `5.8.3`.
+- Passed 21 assertions.
+- Created and read back `SERVICE-API-EVIDENCE.md`.
+- Preserved the no-real-source, no-credential, no-queue-mutation, and no-UI boundaries for this completed slice.
 
 LAST RESULT:
-Executable parser validation passed with 26 assertions. The persisted validation record is at commit `3c32e297f0afd5d78be0c31c09276a03ea9cfa06`. The parser boundary is now verified and ready for a fixture-backed service/API slice that still requires no private credentials.
+The fixture-backed service/API evidence is repository-persisted at commit `8a070611f69f3f5e010384b916294d49f0eddd8f`. The internal read-only endpoint is ready for a bounded credential-free Office Queue Dashboard UI.
 
 EXACTLY ONE NEXT ACTION:
-Implement a credential-free fixture-backed queue service and internal read-only endpoint by creating `lib/queues/source.ts`, `lib/queues/fixture-source.ts`, `lib/queues/service.ts`, and `app/api/queues/route.ts`; use only the sanitized fixtures, return separate Work and Research snapshots with source metadata and visible `OK`, `EMPTY`, `SOURCE_ERROR`, or `PARSE_ERROR` states, ensure one-domain failure does not fabricate or erase the other domain, and persist executable API/service evidence without configuring any real private-repository source.
+Create `components/QueueDashboard.tsx` and make the smallest bounded modification to `components/CommandCenter.tsx` required to add a dedicated read-only Queue view that fetches `/api/queues`, displays Work and Research separately with an optional combined view, preserves Work Queue Order and Research Current Round, shows source revision/fetch time/status/warnings, and renders explicit loading, empty, source-error, and parse-error states without adding any mutation control or real private-repository source.
 
 AUTHORIZED SCOPE:
-- Create only the fixture source, queue service, browser-safe response contracts if required, internal read-only route, bounded validation files, and Work evidence.
-- Use sanitized fixtures only.
-- Return no raw Markdown, credential, environment value, authorization header, stack trace, or arbitrary filesystem path to the browser.
-- Modify parser or type files only if the service/API slice reveals a bounded contract defect.
+- Add one Queue Dashboard client component.
+- Add one dedicated navigation/view integration in `CommandCenter`.
+- Consume only the existing `/api/queues` response.
+- Add minimal styles under existing authorized Office styling conventions when required.
+- Add bounded UI validation and evidence.
 
 AUTHORIZED PRODUCT PATHS:
-- `lib/queues/`
-- `fixtures/queues/`
-- `app/api/queues/route.ts`
+- `components/QueueDashboard.tsx`
+- `components/CommandCenter.tsx`
+- `app/globals.css` only for the minimum Queue Dashboard styles
 - validation files under `tests/queues/` or `scripts/`
-- validation TypeScript configuration when minimally required
 - `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/`
 
 PROHIBITED:
-- No `CommandCenter` or other UI modification.
 - No GitHub App, PAT, private key, token, environment secret, configured private-repository filesystem path, or real source adapter.
-- No queue mutation, claim action, priority interpretation, reordering, approval, or Handoff mutation through Office.
-- No new dependency or package-script change unless executable validation genuinely requires a separately recorded minimal change.
+- No queue edit, claim, reorder, approval, resume, or Handoff action.
+- No reinterpretation of priority, status, Queue Order, Current Round, waiting, or authority.
 - No merge, promotion, Mission change, or scope expansion.
 
 EVIDENCE:
 - `lib/queues/types.ts`
-- `lib/queues/parse-markdown-table.ts`
-- `lib/queues/parse-work-queue.ts`
-- `lib/queues/parse-research-queue.ts`
-- `fixtures/queues/`
-- `tests/queues/parser-validation.ts`
-- `tsconfig.queue-validation.json`
-- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/PARSER-EVIDENCE.md`
-- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/PARSER-VALIDATION.md`
-- parser-validation commit `3c32e297f0afd5d78be0c31c09276a03ea9cfa06`
-- validation-config commit `d1a5d5fdde0b1e6dbaed16893b10049165e482b4`
-- validation-test commit `20b7f769638b2bcf15f2acfa4aee31346a805108`
+- `lib/queues/source.ts`
+- `lib/queues/fixture-source.ts`
+- `lib/queues/service.ts`
+- `app/api/queues/route.ts`
+- `tests/queues/service-api-validation.ts`
+- `tsconfig.queue-service-validation.json`
+- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/SERVICE-API-EVIDENCE.md`
+- service/API evidence commit `8a070611f69f3f5e010384b916294d49f0eddd8f`
+- route commit `2ad09230327dda0c65eeb6e256789e3a7b485091`
+- service validation test commit `e56d23f7087bdb8d7d4cc2568c521a6b9081c1b5`
 
 STOP CONDITION:
-Stop after the fixture-backed service, `/api/queues`, executable service/API evidence, and successor Handoff are persisted and read-back verified; then emit exactly one successor Handoff with one bounded next action.
+Stop after the credential-free Queue Dashboard UI, UI evidence, and successor Handoff are persisted and read-back verified; then emit exactly one successor Handoff with one bounded next action.
 
 <!-- AI-DOS HANDOFF END -->
