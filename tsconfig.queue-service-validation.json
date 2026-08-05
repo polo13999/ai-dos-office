@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "incremental": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "ES2022",
+    "outDir": ".queue-service-validation",
+    "types": ["node"]
+  },
+  "include": [
+    "lib/queues/**/*.ts",
+    "app/api/queues/route.ts",
+    "tests/queues/service-api-validation.ts"
+  ],
+  "exclude": ["node_modules", ".next"]
+}
