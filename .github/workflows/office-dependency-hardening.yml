@@ -56,3 +56,5 @@ jobs:
           name: portable-package-lock
           path: package-lock.json
           if-no-files-found: error
+
+# synchronized validation trigger
