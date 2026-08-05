@@ -32,7 +32,7 @@ function SourceState({ snapshot }: { snapshot: QueueSnapshot }) {
         <div><small style={{ color: "#8ba0b2" }}>Last success</small><div>{formatTime(snapshot.lastSuccessfulFetch)}</div></div>
         <div><small style={{ color: "#8ba0b2" }}>Warnings</small><div>{snapshot.warnings.length}</div></div>
       </div>
-      {snapshot.message && <p role="alert" style={{ marginBottom: 0, color: "#ffb2a8" }}>{snapshot.message}</p>}
+      {snapshot.errors.length > 0 && <div role="alert" style={{ marginTop: 12, color: "#ffb2a8" }}>{snapshot.errors.map((error, index) => <p key={`${error}-${index}`} style={{ margin: "4px 0" }}>{error}</p>)}</div>}
       {snapshot.warnings.length > 0 && <details style={{ marginTop: 12 }}><summary>查看 parser warnings</summary><ul>{snapshot.warnings.map((warning, index) => <li key={`${warning}-${index}`}>{warning}</li>)}</ul></details>}
     </section>
   );
