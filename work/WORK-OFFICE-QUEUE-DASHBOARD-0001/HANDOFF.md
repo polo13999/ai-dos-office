@@ -7,74 +7,80 @@ STATUS:
 RUNNING
 
 CURRENT ROUND OR STEP:
-FIXTURE_SERVICE_API_COMPLETE
+CREDENTIAL_FREE_QUEUE_UI_COMPLETE
 
 PREVIOUS ROUND OR STEP:
-PARSER_VALIDATION_COMPLETE
+FIXTURE_SERVICE_API_COMPLETE
 
 AUTHORITY:
-- Review and modify only `polo13999/ai-dos-office` within the bounded Work `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/` and the explicitly authorized read-only UI paths listed below.
-- May implement a credential-free Queue Dashboard UI that consumes the existing fixture-backed `/api/queues` endpoint.
-- May add loading, empty, source-error, parse-error, warning, freshness, Work, Research, and optional combined display states.
+- Review and modify only `polo13999/ai-dos-office` within the bounded Work `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/` and the explicitly authorized application-validation paths listed below.
+- May execute and persist a full application build and running fixture-backed Queue Dashboard validation.
+- May make only bounded fixes revealed by build or fixture-backed browser validation within the existing queue parser, service, API, Queue Dashboard, Command Center integration, and validation paths.
 - May not configure or access real private-repository credentials, implement a real GitHub or filesystem source adapter, mutate authoritative queues, claim or reorder items, alter Handoff authority, merge, promote files, activate a Mission, or expand scope.
 - This Handoff is transport only.
 
 CURRENT STATE:
-The credential-free parser, fixture source, queue service, browser-safe response contracts, and internal read-only `/api/queues` endpoint are persisted. The endpoint uses only sanitized fixtures and returns separate Work and Research snapshots with source metadata and visible `OK`, `EMPTY`, `SOURCE_ERROR`, or `PARSE_ERROR` states. Executable service/API validation passed 21 assertions covering independent-domain behavior, no fabricated rows, parse and source failures, empty queues, HTTP status, `no-store`, and browser-safe serialization. No Office UI, real source adapter, private credential, queue mutation, dependency change, merge, promotion, or Mission change has occurred.
+The credential-free queue slice now includes parsers, executable parser validation, a sanitized fixture source, queue service, browser-safe response contracts, the internal read-only `/api/queues` endpoint, `components/QueueDashboard.tsx`, and a dedicated `queues` view in `components/CommandCenter.tsx`. The UI fetches only `/api/queues`, displays separate Work and Research source states, supports Work/Research/combined display, preserves Work Queue Order and Research Current Round, shows revision/fetch/status/warnings/errors, and contains no queue mutation control. Static UI contract validation found one mismatch (`snapshot.message` versus `snapshot.errors`) and corrected it without changing the API contract. No full Next.js build, running browser validation, real source adapter, or private credential has occurred.
 
 COMPLETED:
-- Extended queue contracts with source documents, snapshots, response, and `SOURCE_ERROR` status.
-- Added `QueueSource` and bounded source error contracts.
-- Added `FixtureQueueSource` reading only sanitized fixture files.
-- Added queue service behavior that reads Work and Research independently.
-- Added visible source and parse failure states without fabricating rows.
-- Added `app/api/queues/route.ts` with fixture-backed read-only output and `Cache-Control: no-store`.
-- Added executable service/API validation and a reproducible TypeScript validation configuration.
-- Executed validation with Node `v22.16.0` and TypeScript `5.8.3`.
-- Passed 21 assertions.
-- Created and read back `SERVICE-API-EVIDENCE.md`.
-- Preserved the no-real-source, no-credential, no-queue-mutation, and no-UI boundaries for this completed slice.
+- Created and read back `components/QueueDashboard.tsx`.
+- Added a dedicated `queues` View, navigation item, title, and render branch to `CommandCenter` while preserving existing views.
+- Reused existing Office visual primitives without modifying global CSS.
+- Added explicit loading, request-failure, missing-response, empty, source-error, parse-error, warning, and successful states.
+- Displayed Work-specific Queue Order, Next Action, Resume Condition, and location.
+- Displayed Research-specific Current Round without inventing Work-only fields.
+- Added Work, Research, and combined display tabs that affect presentation only.
+- Preserved the read-only boundary with no claim, edit, reorder, approval, resume, Handoff, or repository operation.
+- Found and fixed the QueueSnapshot error-field contract mismatch.
+- Created and read back `UI-EVIDENCE.md`.
+- Added no real source adapter, credential, dependency, package script, queue mutation, merge, promotion, or Mission change.
 
 LAST RESULT:
-The fixture-backed service/API evidence is repository-persisted at commit `8a070611f69f3f5e010384b916294d49f0eddd8f`. The internal read-only endpoint is ready for a bounded credential-free Office Queue Dashboard UI.
+The credential-free Queue Dashboard UI is repository-persisted. `UI-EVIDENCE.md` is persisted at commit `872192f9cd3e3fe992a2a5b8e17dd0ec287b253c`; the Queue Dashboard contract fix is at commit `d312633279d70969766cc3bdd63d6d39c9fa1188`; Command Center integration is at commit `6ecd51d518925a5462dc9ea2541e4ffd8c9238a9`. The bounded feature is structurally complete but requires full application build and running fixture-backed validation.
 
 EXACTLY ONE NEXT ACTION:
-Create `components/QueueDashboard.tsx` and make the smallest bounded modification to `components/CommandCenter.tsx` required to add a dedicated read-only Queue view that fetches `/api/queues`, displays Work and Research separately with an optional combined view, preserves Work Queue Order and Research Current Round, shows source revision/fetch time/status/warnings, and renders explicit loading, empty, source-error, and parse-error states without adding any mutation control or real private-repository source.
+Run a full repository `next build` and a running fixture-backed validation of `/api/queues` plus the dedicated Queue Dashboard view; verify navigation, Work/Research/combined display, Queue Order and Current Round preservation, source status/freshness/errors, loading and empty behavior where practical, absence of mutation controls, and no regression to existing Command Center views; persist exact commands, results, screenshots or textual observations where available, and any bounded fixes in `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/APPLICATION-VALIDATION.md`.
 
 AUTHORIZED SCOPE:
-- Add one Queue Dashboard client component.
-- Add one dedicated navigation/view integration in `CommandCenter`.
-- Consume only the existing `/api/queues` response.
-- Add minimal styles under existing authorized Office styling conventions when required.
-- Add bounded UI validation and evidence.
+- Execute the repository build and run the existing fixture-backed application.
+- Validate the Queue Dashboard and existing Command Center navigation.
+- Add only minimal validation scripts or records when required.
+- Modify only existing queue, API, Queue Dashboard, Command Center integration, or validation files when a concrete build or runtime defect is demonstrated.
+- Record exact failures and do not claim success without executable evidence.
 
 AUTHORIZED PRODUCT PATHS:
+- `lib/queues/`
+- `fixtures/queues/`
+- `app/api/queues/route.ts`
 - `components/QueueDashboard.tsx`
 - `components/CommandCenter.tsx`
-- `app/globals.css` only for the minimum Queue Dashboard styles
 - validation files under `tests/queues/` or `scripts/`
+- validation TypeScript configuration when minimally required
 - `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/`
 
 PROHIBITED:
 - No GitHub App, PAT, private key, token, environment secret, configured private-repository filesystem path, or real source adapter.
 - No queue edit, claim, reorder, approval, resume, or Handoff action.
 - No reinterpretation of priority, status, Queue Order, Current Round, waiting, or authority.
-- No merge, promotion, Mission change, or scope expansion.
+- No unrelated UI redesign, merge, promotion, Mission change, or scope expansion.
 
 EVIDENCE:
+- `components/QueueDashboard.tsx`
+- `components/CommandCenter.tsx`
 - `lib/queues/types.ts`
 - `lib/queues/source.ts`
 - `lib/queues/fixture-source.ts`
 - `lib/queues/service.ts`
 - `app/api/queues/route.ts`
-- `tests/queues/service-api-validation.ts`
-- `tsconfig.queue-service-validation.json`
 - `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/SERVICE-API-EVIDENCE.md`
+- `work/WORK-OFFICE-QUEUE-DASHBOARD-0001/UI-EVIDENCE.md`
+- UI evidence commit `872192f9cd3e3fe992a2a5b8e17dd0ec287b253c`
+- Queue Dashboard commit `7a47b76220105c4a1732eb2e208da9f31ba8f403`
+- Queue Dashboard contract-fix commit `d312633279d70969766cc3bdd63d6d39c9fa1188`
+- Command Center integration commit `6ecd51d518925a5462dc9ea2541e4ffd8c9238a9`
 - service/API evidence commit `8a070611f69f3f5e010384b916294d49f0eddd8f`
-- route commit `2ad09230327dda0c65eeb6e256789e3a7b485091`
-- service validation test commit `e56d23f7087bdb8d7d4cc2568c521a6b9081c1b5`
 
 STOP CONDITION:
-Stop after the credential-free Queue Dashboard UI, UI evidence, and successor Handoff are persisted and read-back verified; then emit exactly one successor Handoff with one bounded next action.
+Stop after full application build and running fixture-backed Queue Dashboard validation plus `APPLICATION-VALIDATION.md` are persisted and read-back verified; then emit exactly one successor Handoff with one bounded next action.
 
 <!-- AI-DOS HANDOFF END -->
