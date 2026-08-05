@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { FixtureQueueSource } from "../../../lib/queues/fixture-source";
+import { createQueueSource } from "../../../lib/queues/source-factory";
 import { buildQueueDashboard, hasAvailableQueue } from "../../../lib/queues/service";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const response = await buildQueueDashboard(new FixtureQueueSource());
+  const response = await buildQueueDashboard(createQueueSource());
   const status = hasAvailableQueue(response) ? 200 : 503;
 
   return NextResponse.json(response, {

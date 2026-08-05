@@ -1,0 +1,44 @@
+name: Office Live Queue Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-live-queue-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install declared dependencies from public npm
+        shell: bash
+        run: |
+          rm -f package-lock.json
+          npm install --no-package-lock --no-audit --no-fund --registry=https://registry.npmjs.org
+
+      - name: Compile focused queue validation
+        run: npx tsc -p tsconfig.queue-service-validation.json
+
+      - name: Run focused service and API validation
+        run: node .queue-service-validation/tests/queues/service-api-validation.js
+
+      - name: Build Office application
+        run: npm run build
