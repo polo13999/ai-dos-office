@@ -1,0 +1,229 @@
+/* WORK-OFFICE-VIEWPORT-RWD-0001
+ * Structural overflow ownership for the active Command Center shell.
+ * Root document stays viewport-bound; long content scrolls inside the owning panel.
+ */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-width: 0;
+}
+
+.command-shell {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  max-width: 100%;
+  overflow: hidden;
+  grid-template-columns: minmax(210px, 244px) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.command-sidebar {
+  position: relative;
+  top: auto;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.command-sidebar::-webkit-scrollbar,
+.command-main::-webkit-scrollbar,
+.command-nav::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.command-main {
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.command-main > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.command-footer {
+  grid-column: 1 / -1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.command-footer > * {
+  min-width: 0;
+}
+
+.pixel-panel,
+.dashboard-grid,
+.metric-grid,
+.quick-action-bar,
+.command-topbar,
+.game-hud,
+.panel-heading,
+.queue-row,
+.hero-status {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.queue-panel,
+.table-wrap,
+.queue-table-wrap,
+.observe-lines {
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .command-shell {
+    grid-template-columns: minmax(184px, 216px) minmax(0, 1fr);
+  }
+
+  .command-main {
+    padding: 22px 22px 34px;
+  }
+
+  .hero-status {
+    grid-template-columns: minmax(0, 1fr) minmax(160px, 200px);
+  }
+}
+
+@media (max-width: 760px) {
+  .command-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .command-sidebar {
+    grid-row: 1;
+    padding: max(10px, env(safe-area-inset-top)) 12px 10px;
+    border-right: 0;
+    border-bottom: 3px solid #243e4e;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, .2);
+    overflow: hidden;
+  }
+
+  .pixel-logo,
+  .founder-profile,
+  .sidebar-status {
+    display: none;
+  }
+
+  .command-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin: 0;
+    padding-bottom: 2px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    touch-action: pan-x;
+  }
+
+  .command-nav button {
+    flex: 0 0 auto;
+    min-width: 92px;
+    min-height: 42px;
+    grid-template-columns: 24px auto auto;
+    padding: 0 10px;
+    white-space: nowrap;
+  }
+
+  .command-nav button.active::before {
+    left: auto;
+    bottom: -1px;
+    width: 28px;
+    height: 3px;
+  }
+
+  .command-main {
+    grid-row: 2;
+    padding: 16px 14px 24px;
+  }
+
+  .command-footer {
+    grid-row: 3;
+    grid-column: 1;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+
+  .command-topbar,
+  .game-hud,
+  .top-actions,
+  .quick-action-bar,
+  .panel-heading,
+  .queue-row {
+    flex-wrap: wrap;
+  }
+
+  .command-topbar {
+    gap: 12px;
+  }
+
+  .top-actions {
+    width: 100%;
+  }
+
+  .hero-status {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .company-health {
+    border-left: 0;
+    border-top: 2px dashed #3b5c65;
+    padding-top: 18px;
+  }
+
+  .metric-grid,
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .command-main {
+    padding-inline: 10px;
+  }
+
+  .command-topbar h1 {
+    font-size: clamp(22px, 7vw, 28px);
+  }
+
+  .command-nav button {
+    min-width: 82px;
+  }
+
+  .command-footer {
+    font-size: 10px;
+  }
+}
