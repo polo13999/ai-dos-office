@@ -1,0 +1,66 @@
+[
+  {
+    "id": "current-mission",
+    "label": "Current Mission / Active GEN",
+    "status": "AVAILABLE_FIXTURE",
+    "summary": "Authoritative-shape fixture is available; live Git reading is not implemented.",
+    "source": {
+      "repository": "polo13999/AI-DOS",
+      "path": "CURRENT_MISSION.md",
+      "revision": "fixture-authoritative-shape-v1",
+      "mode": "FIXTURE",
+      "freshness": "Static sanitized fixture.",
+      "permission": "Local fixture only.",
+      "warnings": ["FIXTURE / NOT LIVE"],
+      "errors": []
+    }
+  },
+  {
+    "id": "runtime-status",
+    "label": "Runtime / scheduler / workers / heartbeat",
+    "status": "UNAVAILABLE",
+    "summary": "No reliable bounded read-only source has been established.",
+    "source": {
+      "repository": "unavailable",
+      "path": "unavailable",
+      "revision": null,
+      "mode": "FIXTURE",
+      "freshness": "No source.",
+      "permission": "Not applicable.",
+      "warnings": [],
+      "errors": ["Authoritative Runtime source unavailable."]
+    }
+  },
+  {
+    "id": "releases",
+    "label": "GitHub releases",
+    "status": "UNSUPPORTED",
+    "summary": "No supported V1 source path is implemented.",
+    "source": {
+      "repository": "polo13999/ai-dos-office",
+      "path": "GitHub release metadata",
+      "revision": null,
+      "mode": "FIXTURE",
+      "freshness": "Unsupported in V1.",
+      "permission": "Not evaluated.",
+      "warnings": ["Deferred capability"],
+      "errors": []
+    }
+  },
+  {
+    "id": "workflow-artifacts",
+    "label": "Workflow artifacts",
+    "status": "PERMISSION_REQUIRED",
+    "summary": "Run context and Actions artifact permission are required.",
+    "source": {
+      "repository": "polo13999/ai-dos-office",
+      "path": "GitHub Actions artifacts",
+      "revision": null,
+      "mode": "FIXTURE",
+      "freshness": "Run-specific.",
+      "permission": "Actions artifact read permission and run ID required.",
+      "warnings": ["No run context in V1"],
+      "errors": []
+    }
+  }
+]
