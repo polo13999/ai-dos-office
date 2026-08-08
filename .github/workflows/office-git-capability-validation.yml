@@ -33,10 +33,10 @@ jobs:
         run: |
           rm -f package-lock.json
           npm install --no-package-lock --no-audit --no-fund --registry=https://registry.npmjs.org
-          npm install --no-save --no-package-lock --no-audit --no-fund @playwright/test@1.55.0
+          npm install --no-save --no-package-lock --no-audit --no-fund @playwright/test@1.55.0 tsx@4.20.5
 
       - name: Run capability unit validation
-        run: node --test --experimental-strip-types lib/capabilities/classify-work-completion.test.ts
+        run: npx tsx --test lib/capabilities/classify-work-completion.test.ts
 
       - name: Build Office application
         run: npm run build
