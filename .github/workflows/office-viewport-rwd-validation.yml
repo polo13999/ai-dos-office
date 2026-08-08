@@ -1,0 +1,103 @@
+name: Office Viewport RWD Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-viewport-rwd:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies from public npm
+        shell: bash
+        run: |
+          rm -f package-lock.json
+          npm install --no-package-lock --no-audit --no-fund --registry=https://registry.npmjs.org
+          npm install --no-save --no-package-lock --no-audit --no-fund @playwright/test@1.55.0
+
+      - name: Build Office application
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start Office
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/office.log 2>&1 &
+          echo $! > /tmp/office.pid
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/office.log
+          exit 1
+
+      - name: Validate viewport fit and internal scrolling
+        shell: bash
+        run: |
+          mkdir -p .ci-rwd
+          cat > .ci-rwd/viewport.spec.js <<'EOF'
+          const { test, expect } = require('@playwright/test');
+
+          for (const viewport of [
+            { name: 'desktop', width: 1440, height: 900 },
+            { name: 'tablet', width: 768, height: 1024 },
+            { name: 'mobile', width: 390, height: 844 },
+          ]) {
+            test(`${viewport.name} stays viewport-bound`, async ({ page }) => {
+              await page.setViewportSize({ width: viewport.width, height: viewport.height });
+              await page.goto('http://127.0.0.1:3000/', { waitUntil: 'networkidle' });
+              const metrics = await page.evaluate(() => ({
+                innerWidth: window.innerWidth,
+                innerHeight: window.innerHeight,
+                docWidth: document.documentElement.scrollWidth,
+                docHeight: document.documentElement.scrollHeight,
+                bodyWidth: document.body.scrollWidth,
+                bodyHeight: document.body.scrollHeight,
+                shell: (() => {
+                  const el = document.querySelector('.command-shell');
+                  if (!el) return null;
+                  const r = el.getBoundingClientRect();
+                  return { width: r.width, height: r.height };
+                })(),
+              }));
+              expect(metrics.docWidth).toBeLessThanOrEqual(metrics.innerWidth + 1);
+              expect(metrics.bodyWidth).toBeLessThanOrEqual(metrics.innerWidth + 1);
+              expect(metrics.docHeight).toBeLessThanOrEqual(metrics.innerHeight + 1);
+              expect(metrics.bodyHeight).toBeLessThanOrEqual(metrics.innerHeight + 1);
+              expect(metrics.shell).not.toBeNull();
+              expect(metrics.shell.height).toBeLessThanOrEqual(metrics.innerHeight + 1);
+            });
+          }
+          EOF
+          npx playwright test .ci-rwd/viewport.spec.js --reporter=line
+
+      - name: Upload Office log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: office-viewport-rwd-log
+          path: /tmp/office.log
