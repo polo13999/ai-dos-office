@@ -1,0 +1,115 @@
+name: Office Git Capability Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-git-capability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies from public npm
+        shell: bash
+        run: |
+          rm -f package-lock.json
+          npm install --no-package-lock --no-audit --no-fund --registry=https://registry.npmjs.org
+          npm install --no-save --no-package-lock --no-audit --no-fund @playwright/test@1.55.0
+
+      - name: Run capability unit validation
+        run: node --test --experimental-strip-types lib/capabilities/classify-work-completion.test.ts
+
+      - name: Build Office application
+        run: npm run build
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start Office
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/office.log 2>&1 &
+          echo $! > /tmp/office.pid
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/office.log
+          exit 1
+
+      - name: Validate API and Queue regression
+        shell: bash
+        run: |
+          curl -fsS http://127.0.0.1:3000/api/capabilities > /tmp/capabilities.json
+          curl -fsS http://127.0.0.1:3000/api/queues > /tmp/queues.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const caps = JSON.parse(fs.readFileSync('/tmp/capabilities.json', 'utf8'));
+          const queues = JSON.parse(fs.readFileSync('/tmp/queues.json', 'utf8'));
+          if (caps.mode !== 'FIXTURE') throw new Error('Capabilities mode must be FIXTURE.');
+          if (!Array.isArray(caps.capabilities) || caps.capabilities.length === 0) throw new Error('Capability records missing.');
+          if (!caps.workCompletion?.some((x) => x.state === 'UNFINISHED')) throw new Error('UNFINISHED evidence classification missing.');
+          if (!queues.work || !queues.research) throw new Error('Queue API regression: work/research snapshot missing.');
+          const serialized = JSON.stringify(caps).toLowerCase();
+          if (serialized.includes('bearer ') || serialized.includes('github_token') || serialized.includes('authorization')) {
+            throw new Error('Credential-like material leaked into capability response.');
+          }
+          NODE
+
+      - name: Validate responsive capability page
+        shell: bash
+        run: |
+          mkdir -p .ci-capabilities
+          cat > .ci-capabilities/capabilities.spec.js <<'EOF'
+          const { test, expect } = require('@playwright/test');
+
+          for (const viewport of [
+            { name: 'desktop', width: 1440, height: 900 },
+            { name: 'mobile', width: 390, height: 844 },
+          ]) {
+            test(`${viewport.name} capability page`, async ({ page }) => {
+              await page.setViewportSize({ width: viewport.width, height: viewport.height });
+              await page.goto('http://127.0.0.1:3000/capabilities', { waitUntil: 'networkidle' });
+              await expect(page.getByText('Capabilities — FIXTURE / NOT LIVE')).toBeVisible();
+              const width = await page.evaluate(() => ({
+                inner: window.innerWidth,
+                doc: document.documentElement.scrollWidth,
+                body: document.body.scrollWidth,
+              }));
+              expect(width.doc).toBeLessThanOrEqual(width.inner + 1);
+              expect(width.body).toBeLessThanOrEqual(width.inner + 1);
+              const bodyText = (await page.locator('body').innerText()).toLowerCase();
+              expect(bodyText).not.toContain('bearer ');
+              expect(bodyText).not.toContain('github_token');
+            });
+          }
+          EOF
+          npx playwright test .ci-capabilities/capabilities.spec.js --reporter=line
+
+      - name: Upload Office log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: office-git-capability-log
+          path: /tmp/office.log
