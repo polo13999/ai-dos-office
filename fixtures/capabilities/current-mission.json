@@ -1,0 +1,17 @@
+{
+  "missionId": "GEN-0035",
+  "title": "Reusable Pattern Extraction and Knowledge Review",
+  "status": "ACTIVE",
+  "activeGen": "GEN-0035",
+  "owner": "AI-DOS Governance / bounded Work execution",
+  "source": {
+    "repository": "polo13999/AI-DOS",
+    "path": "CURRENT_MISSION.md",
+    "revision": "fixture-authoritative-shape-v1",
+    "mode": "FIXTURE",
+    "freshness": "Sanitized fixture derived from an authoritative file shape; not live.",
+    "permission": "No credential required for local fixture.",
+    "warnings": ["FIXTURE / NOT LIVE"],
+    "errors": []
+  }
+}

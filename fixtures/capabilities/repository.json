@@ -1,0 +1,15 @@
+{
+  "repository": "polo13999/ai-dos-office",
+  "defaultBranch": "main",
+  "recentCommit": "fixture-repository-snapshot-v1",
+  "source": {
+    "repository": "polo13999/ai-dos-office",
+    "path": "repository metadata",
+    "revision": "fixture-authoritative-shape-v1",
+    "mode": "FIXTURE",
+    "freshness": "Sanitized repository metadata fixture; not live.",
+    "permission": "No credential required for local fixture.",
+    "warnings": ["FIXTURE / NOT LIVE"],
+    "errors": []
+  }
+}

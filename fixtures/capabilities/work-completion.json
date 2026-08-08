@@ -1,0 +1,52 @@
+[
+  {
+    "workId": "WORK-OFFICE-GIT-CAPABILITY-INVENTORY-0001",
+    "title": "AI-DOS Office Git Capability Inventory and Integration V1",
+    "evidence": [
+      {
+        "kind": "UNFINISHED_QUEUE",
+        "reference": "ai-dos-work/WORK_TASK_LIST.md#queue-order-12",
+        "strength": "AUTHORITATIVE",
+        "status": "RUNNING"
+      }
+    ]
+  },
+  {
+    "workId": "WORK-CANONICAL-BIBLE-SPEC-0001",
+    "title": "Define Canonical Bible Specification",
+    "evidence": [
+      {
+        "kind": "REMOVED_COMPLETED",
+        "reference": "ai-dos-work/WORK_TASK_LIST.md#removed-completed-work",
+        "strength": "DURABLE_COMPLETION"
+      },
+      {
+        "kind": "WORK_RESULT",
+        "reference": "works/knowledge/WORK-CANONICAL-BIBLE-SPEC-0001/WORK.md",
+        "strength": "DURABLE_COMPLETION"
+      }
+    ]
+  },
+  {
+    "workId": "WORK-UNKNOWN-EXAMPLE-0001",
+    "title": "Unknown completion example",
+    "evidence": []
+  },
+  {
+    "workId": "WORK-CONTRADICTORY-EXAMPLE-0001",
+    "title": "Contradictory evidence example",
+    "evidence": [
+      {
+        "kind": "UNFINISHED_QUEUE",
+        "reference": "fixture/unfinished",
+        "strength": "AUTHORITATIVE",
+        "status": "BLOCKED"
+      },
+      {
+        "kind": "FINAL_REVIEW",
+        "reference": "fixture/final-review",
+        "strength": "DURABLE_COMPLETION"
+      }
+    ]
+  }
+]
